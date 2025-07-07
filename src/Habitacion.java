@@ -1,30 +1,53 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 /**
  *
  * @author hegam
  */
 public class Habitacion {
-    private int numero;
-    private String tipo;
-    private double precio;
+    protected int numero;
+    protected String tipo;
+    double precio;
 
-    public Habitacion(int numero, String tipo, double precio) {
+    public Habitacion(int numero, String tipo) {
         this.numero = numero;
         this.tipo = tipo;
-        this.precio = precio;
     }
 
     public void mostrarInfo() {
         System.out.println("\nHabitación " + numero + 
                            "\nTipo: " + tipo + 
-                           "\nPrecio: " + precio);
+                           "\nPrecio: " + calcularPrecioHabitacion());
+    }
+    
+    public double calcularPrecioHabitacion(){
+        
+        switch (tipo) {
+            case "HABITACION INDIVIDUAL":
+                precio = 85.90;
+                break;
+            case "HABITACION DOBLE":
+                precio = 105.90;
+                break;
+            case "HABITACION TRIPLE":
+                precio = 125.90;
+                break;
+            case "HABITACION CUADRUPLE":
+                precio = 145.90;
+                break;
+            case "HABITACION SUITE":
+                precio = 200.90;
+                break;
+            case "HABITACION PRESIDENCIAL":
+                precio = 1250.90;
+                break;
+        }
+        return precio;
     }
 
     public int getNumero() {
         return numero;
+    }
+    
+    public double getPrecio(){
+        return precio;
     }
 }
