@@ -681,7 +681,7 @@ public class PrincipalCRUD extends javax.swing.JFrame {
 
         jLabel24.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel24.setText("Elimina huésped solo ingresando su DNI en la casilla de texto");
+        jLabel24.setText("Elimina huésped solo ingresando su DNI en la casilla de texto.");
 
         jLabel25.setForeground(new java.awt.Color(0, 0, 0));
         jLabel25.setText("DNI:");

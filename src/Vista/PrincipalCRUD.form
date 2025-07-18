@@ -1189,7 +1189,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Elimina hu&#xe9;sped solo ingresando su DNI en la casilla de texto"/>
+                        <Property name="text" type="java.lang.String" value="Elimina hu&#xe9;sped solo ingresando su DNI en la casilla de texto."/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel25">
