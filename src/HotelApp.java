@@ -1,3 +1,6 @@
+import Clases.Reserva;
+import Clases.Habitacion;
+import Clases.Cliente;
 import java.util.Scanner;
 /**
  *

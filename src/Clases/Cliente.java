@@ -1,13 +1,12 @@
+package Clases;
+
 /**
  *
  * @author hegam
  */
-public class Empleado extends Persona{
-    private String puesto;
-
-    public Empleado(String dni, String nombre, String apellido_paterno, String apellido_materno, String correo, String nro_telefono, String puesto) {
+public class Cliente extends Persona{
+    public Cliente(String dni, String nombre, String apellido_paterno, String apellido_materno, String correo, String nro_telefono) {
         super(dni, nombre, apellido_paterno, apellido_materno, correo, nro_telefono);
-        this.puesto = puesto;
     }
 
     @Override
@@ -17,7 +16,6 @@ public class Empleado extends Persona{
                            "\nApellido Paterno: " + apellido_paterno +
                            "\nApellido Materno: " + apellido_materno +
                            "\nCorreo: " + correo +
-                           "\nNro Telefonico: " + nro_telefono +
-                           "\nPuesto: " + puesto);
+                           "\nNro Telefonico: " + nro_telefono);
     }
 }

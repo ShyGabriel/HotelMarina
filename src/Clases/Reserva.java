@@ -1,3 +1,9 @@
+package Clases;
+
+
+import Clases.Habitacion;
+import Clases.Cliente;
+
 /**
  *
  * @author hegam

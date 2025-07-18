@@ -1,3 +1,5 @@
+package Clases;
+
 import java.util.Scanner;
 
 // Interfaz Reservable

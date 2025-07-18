@@ -4,6 +4,9 @@
  */
 package Vista;
 
+import ClaseDAO.Reserva;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hegam
@@ -15,6 +18,27 @@ public class PrincipalCRUD extends javax.swing.JFrame {
      */
     public PrincipalCRUD() {
         initComponents();
+        this.setLocationRelativeTo(null);
+    }
+    
+    public PrincipalCRUD(String nombreUsuario) {
+        initComponents();
+        lblUsuarioName.setText(nombreUsuario);
+        this.setLocationRelativeTo(null);
+        Reserva.listarReservas(tablaHuesped);
+        bloquearCamposUpdate();
+    }
+    
+    private void bloquearCamposUpdate() {
+        txtNombre_update.setEnabled(false);
+        txtApePater_update.setEnabled(false);
+        txtApeMat_update.setEnabled(false);
+        txtCorreo_update.setEnabled(false);
+        txtNumTel_update.setEnabled(false);
+        txtNroHab_update.setEnabled(false);
+        cbTipoHab_update.setEnabled(false);
+        txtPrecioHab_update.setEnabled(false);
+        btnActualizar_update.setEnabled(false);
     }
 
     /**
@@ -30,8 +54,8 @@ public class PrincipalCRUD extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        lblUsuario = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        lblUsuarioName = new javax.swing.JLabel();
+        btnCerrarSesion = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
@@ -54,6 +78,12 @@ public class PrincipalCRUD extends javax.swing.JFrame {
         cbTipoHab_crear = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
         btnRegistrar_crear = new javax.swing.JButton();
+        jLabel27 = new javax.swing.JLabel();
+        txtPrecioHab_crear = new javax.swing.JTextField();
+        dcEntrada = new com.toedter.calendar.JDateChooser();
+        dcSalida = new com.toedter.calendar.JDateChooser();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -65,26 +95,28 @@ public class PrincipalCRUD extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         txtDNI_update = new javax.swing.JTextField();
-        txtNombre_crear1 = new javax.swing.JTextField();
-        txtApePater_crear1 = new javax.swing.JTextField();
-        txtApeMat_crear1 = new javax.swing.JTextField();
-        txtCorreo_crear1 = new javax.swing.JTextField();
-        txtNumTel_crear1 = new javax.swing.JTextField();
-        txtNroHab_crear1 = new javax.swing.JTextField();
-        cbTipoHab_crear1 = new javax.swing.JComboBox<>();
+        txtNombre_update = new javax.swing.JTextField();
+        txtApePater_update = new javax.swing.JTextField();
+        txtApeMat_update = new javax.swing.JTextField();
+        txtCorreo_update = new javax.swing.JTextField();
+        txtNumTel_update = new javax.swing.JTextField();
+        txtNroHab_update = new javax.swing.JTextField();
+        cbTipoHab_update = new javax.swing.JComboBox<>();
         jLabel22 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         btnBuscar_update = new javax.swing.JButton();
         btnActualizar_update = new javax.swing.JButton();
+        jLabel26 = new javax.swing.JLabel();
+        txtPrecioHab_update = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         btnBuscar_update1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaHuesped = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        txtDNI_update1 = new javax.swing.JTextField();
+        txtDNI_delete = new javax.swing.JTextField();
         btnRegistrar_crear1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -102,15 +134,20 @@ public class PrincipalCRUD extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Nombre Recepcionista");
 
-        lblUsuario.setForeground(new java.awt.Color(51, 51, 51));
-        lblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblUsuario.setText("usuario");
+        lblUsuarioName.setForeground(new java.awt.Color(51, 51, 51));
+        lblUsuarioName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUsuarioName.setText("usuario");
 
-        jButton1.setBackground(new java.awt.Color(102, 153, 255));
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Cerrar Sesión");
-        jButton1.setToolTipText("");
-        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCerrarSesion.setBackground(new java.awt.Color(102, 153, 255));
+        btnCerrarSesion.setForeground(new java.awt.Color(0, 0, 0));
+        btnCerrarSesion.setText("Cerrar Sesión");
+        btnCerrarSesion.setToolTipText("");
+        btnCerrarSesion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSesionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -119,10 +156,10 @@ public class PrincipalCRUD extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblUsuarioName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -133,9 +170,9 @@ public class PrincipalCRUD extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblUsuario)
+                .addComponent(lblUsuarioName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnCerrarSesion)
                 .addContainerGap())
         );
 
@@ -200,6 +237,11 @@ public class PrincipalCRUD extends javax.swing.JFrame {
         cbTipoHab_crear.setBackground(new java.awt.Color(255, 255, 255));
         cbTipoHab_crear.setForeground(new java.awt.Color(0, 0, 0));
         cbTipoHab_crear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HABITACION INDIVIDUAL", "HABITACION DOBLE", "HABITACION TRIPLE", "HABITACION CUADRUPLE", "HABITACION SUITE", "HABITACION PRESIDENCIAL" }));
+        cbTipoHab_crear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbTipoHab_crearActionPerformed(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 9)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(102, 102, 102));
@@ -208,6 +250,27 @@ public class PrincipalCRUD extends javax.swing.JFrame {
         btnRegistrar_crear.setBackground(new java.awt.Color(102, 153, 255));
         btnRegistrar_crear.setForeground(new java.awt.Color(0, 0, 0));
         btnRegistrar_crear.setText("Registrar");
+        btnRegistrar_crear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrar_crearActionPerformed(evt);
+            }
+        });
+
+        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel27.setText("Precio:");
+
+        txtPrecioHab_crear.setBackground(new java.awt.Color(255, 255, 255));
+
+        dcEntrada.setBackground(new java.awt.Color(255, 255, 255));
+        dcEntrada.setForeground(new java.awt.Color(255, 255, 255));
+
+        dcSalida.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel28.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel28.setText("Fecha de Entrada:");
+
+        jLabel29.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel29.setText("Fecha de Salida:");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -220,15 +283,17 @@ public class PrincipalCRUD extends javax.swing.JFrame {
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtDNI_crear)
@@ -238,10 +303,17 @@ public class PrincipalCRUD extends javax.swing.JFrame {
                             .addComponent(txtCorreo_crear)
                             .addComponent(txtNumTel_crear)
                             .addComponent(txtNroHab_crear)
-                            .addComponent(cbTipoHab_crear, 0, 300, Short.MAX_VALUE))
+                            .addComponent(cbTipoHab_crear, 0, 366, Short.MAX_VALUE)
+                            .addComponent(txtPrecioHab_crear)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(dcEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(46, 46, 46)
+                                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(dcSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(btnRegistrar_crear, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
@@ -286,7 +358,17 @@ public class PrincipalCRUD extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(cbTipoHab_crear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPrecioHab_crear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel27))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(dcEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel28)
+                    .addComponent(jLabel29)
+                    .addComponent(dcSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Crear huésped", jPanel4);
@@ -324,27 +406,27 @@ public class PrincipalCRUD extends javax.swing.JFrame {
         txtDNI_update.setBackground(new java.awt.Color(255, 255, 255));
         txtDNI_update.setForeground(new java.awt.Color(0, 0, 0));
 
-        txtNombre_crear1.setBackground(new java.awt.Color(255, 255, 255));
-        txtNombre_crear1.setForeground(new java.awt.Color(0, 0, 0));
+        txtNombre_update.setBackground(new java.awt.Color(255, 255, 255));
+        txtNombre_update.setForeground(new java.awt.Color(0, 0, 0));
 
-        txtApePater_crear1.setBackground(new java.awt.Color(255, 255, 255));
-        txtApePater_crear1.setForeground(new java.awt.Color(0, 0, 0));
+        txtApePater_update.setBackground(new java.awt.Color(255, 255, 255));
+        txtApePater_update.setForeground(new java.awt.Color(0, 0, 0));
 
-        txtApeMat_crear1.setBackground(new java.awt.Color(255, 255, 255));
-        txtApeMat_crear1.setForeground(new java.awt.Color(0, 0, 0));
+        txtApeMat_update.setBackground(new java.awt.Color(255, 255, 255));
+        txtApeMat_update.setForeground(new java.awt.Color(0, 0, 0));
 
-        txtCorreo_crear1.setBackground(new java.awt.Color(255, 255, 255));
-        txtCorreo_crear1.setForeground(new java.awt.Color(0, 0, 0));
+        txtCorreo_update.setBackground(new java.awt.Color(255, 255, 255));
+        txtCorreo_update.setForeground(new java.awt.Color(0, 0, 0));
 
-        txtNumTel_crear1.setBackground(new java.awt.Color(255, 255, 255));
-        txtNumTel_crear1.setForeground(new java.awt.Color(0, 0, 0));
+        txtNumTel_update.setBackground(new java.awt.Color(255, 255, 255));
+        txtNumTel_update.setForeground(new java.awt.Color(0, 0, 0));
 
-        txtNroHab_crear1.setBackground(new java.awt.Color(255, 255, 255));
-        txtNroHab_crear1.setForeground(new java.awt.Color(0, 0, 0));
+        txtNroHab_update.setBackground(new java.awt.Color(255, 255, 255));
+        txtNroHab_update.setForeground(new java.awt.Color(0, 0, 0));
 
-        cbTipoHab_crear1.setBackground(new java.awt.Color(255, 255, 255));
-        cbTipoHab_crear1.setForeground(new java.awt.Color(0, 0, 0));
-        cbTipoHab_crear1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HABITACION INDIVIDUAL", "HABITACION DOBLE", "HABITACION TRIPLE", "HABITACION CUADRUPLE", "HABITACION SUITE", "HABITACION PRESIDENCIAL" }));
+        cbTipoHab_update.setBackground(new java.awt.Color(255, 255, 255));
+        cbTipoHab_update.setForeground(new java.awt.Color(0, 0, 0));
+        cbTipoHab_update.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HABITACION INDIVIDUAL", "HABITACION DOBLE", "HABITACION TRIPLE", "HABITACION CUADRUPLE", "HABITACION SUITE", "HABITACION PRESIDENCIAL" }));
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 9)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(102, 102, 102));
@@ -357,10 +439,20 @@ public class PrincipalCRUD extends javax.swing.JFrame {
         btnBuscar_update.setBackground(new java.awt.Color(102, 153, 255));
         btnBuscar_update.setForeground(new java.awt.Color(0, 0, 0));
         btnBuscar_update.setText("Buscar");
+        btnBuscar_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar_updateActionPerformed(evt);
+            }
+        });
 
         btnActualizar_update.setBackground(new java.awt.Color(102, 153, 255));
         btnActualizar_update.setForeground(new java.awt.Color(0, 0, 0));
         btnActualizar_update.setText("Actualizar");
+        btnActualizar_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizar_updateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -383,6 +475,11 @@ public class PrincipalCRUD extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel26.setText("Precio:");
+
+        txtPrecioHab_update.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -395,6 +492,7 @@ public class PrincipalCRUD extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                             .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -405,17 +503,18 @@ public class PrincipalCRUD extends javax.swing.JFrame {
                             .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNombre_crear1)
-                            .addComponent(txtApePater_crear1)
-                            .addComponent(txtApeMat_crear1)
-                            .addComponent(txtCorreo_crear1)
-                            .addComponent(txtNumTel_crear1)
-                            .addComponent(txtNroHab_crear1)
-                            .addComponent(cbTipoHab_crear1, 0, 300, Short.MAX_VALUE)
-                            .addComponent(txtDNI_update))
+                            .addComponent(txtNombre_update)
+                            .addComponent(txtApePater_update)
+                            .addComponent(txtApeMat_update)
+                            .addComponent(txtCorreo_update)
+                            .addComponent(txtNumTel_update)
+                            .addComponent(txtNroHab_update)
+                            .addComponent(cbTipoHab_update, 0, 300, Short.MAX_VALUE)
+                            .addComponent(txtDNI_update)
+                            .addComponent(txtPrecioHab_update))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
@@ -435,34 +534,38 @@ public class PrincipalCRUD extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
-                            .addComponent(txtNombre_crear1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNombre_update, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
-                            .addComponent(txtApePater_crear1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtApePater_update, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
-                    .addComponent(txtApeMat_crear1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtApeMat_update, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
-                    .addComponent(txtCorreo_crear1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCorreo_update, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(txtNumTel_crear1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNumTel_update, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNroHab_crear1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNroHab_update, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel20)
                     .addComponent(jLabel22))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbTipoHab_crear1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbTipoHab_update, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel21))
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPrecioHab_update, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel26))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Actualizar huésped", jPanel5);
@@ -476,9 +579,14 @@ public class PrincipalCRUD extends javax.swing.JFrame {
         btnBuscar_update1.setBackground(new java.awt.Color(102, 153, 255));
         btnBuscar_update1.setForeground(new java.awt.Color(0, 0, 0));
         btnBuscar_update1.setText("Mostrar lista huéspedes");
+        btnBuscar_update1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar_update1ActionPerformed(evt);
+            }
+        });
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaHuesped.setBackground(new java.awt.Color(255, 255, 255));
+        tablaHuesped.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null}
             },
@@ -486,9 +594,9 @@ public class PrincipalCRUD extends javax.swing.JFrame {
                 "DNI", "Nombre", "Apellido Pat", "Apellido Mat", "Correo", "Nro Telefono", "Nro Habitacion", "Tipo Hab", "Precio"
             }
         ));
-        jTable1.setGridColor(new java.awt.Color(204, 204, 204));
-        jTable1.setSelectionBackground(new java.awt.Color(153, 153, 153));
-        jScrollPane1.setViewportView(jTable1);
+        tablaHuesped.setGridColor(new java.awt.Color(204, 204, 204));
+        tablaHuesped.setSelectionBackground(new java.awt.Color(153, 153, 153));
+        jScrollPane1.setViewportView(tablaHuesped);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -504,7 +612,7 @@ public class PrincipalCRUD extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE))))
+                            .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -530,12 +638,17 @@ public class PrincipalCRUD extends javax.swing.JFrame {
         jLabel25.setForeground(new java.awt.Color(0, 0, 0));
         jLabel25.setText("DNI:");
 
-        txtDNI_update1.setBackground(new java.awt.Color(255, 255, 255));
-        txtDNI_update1.setForeground(new java.awt.Color(0, 0, 0));
+        txtDNI_delete.setBackground(new java.awt.Color(255, 255, 255));
+        txtDNI_delete.setForeground(new java.awt.Color(0, 0, 0));
 
         btnRegistrar_crear1.setBackground(new java.awt.Color(102, 153, 255));
         btnRegistrar_crear1.setForeground(new java.awt.Color(0, 0, 0));
         btnRegistrar_crear1.setText("Eliminar");
+        btnRegistrar_crear1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrar_crear1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -545,15 +658,14 @@ public class PrincipalCRUD extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE))
+                        .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDNI_update1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDNI_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRegistrar_crear1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(btnRegistrar_crear1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -564,7 +676,7 @@ public class PrincipalCRUD extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
-                    .addComponent(txtDNI_update1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDNI_delete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRegistrar_crear1))
                 .addContainerGap(312, Short.MAX_VALUE))
         );
@@ -575,7 +687,7 @@ public class PrincipalCRUD extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -598,6 +710,212 @@ public class PrincipalCRUD extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        int confirm = JOptionPane.showConfirmDialog(this,
+                "¿Estás seguro de que quieres cerrar sesión?",
+                "Cerrar sesión",
+                JOptionPane.YES_NO_OPTION);
+
+        if (confirm == JOptionPane.YES_OPTION) {
+            // Abrir login de nuevo
+            new Login().setVisible(true);
+            this.dispose(); // Cierra ventana actual
+        }
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
+
+    private void btnRegistrar_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrar_crearActionPerformed
+        String dni = txtDNI_crear.getText().trim();
+        String nombre = txtNombre_crear.getText().trim();
+        String apePater = txtApePater_crear.getText().trim();
+        String apeMater = txtApeMat_crear.getText().trim();
+        String correo = txtCorreo_crear.getText().trim();
+        String telefono = txtNumTel_crear.getText().trim();
+        int numHabitacion = Integer.parseInt(txtNroHab_crear.getText().trim());
+        String tipoHabitacion = cbTipoHab_crear.getSelectedItem().toString();
+
+        double precio = 0;
+        try {
+            precio = Double.parseDouble(txtPrecioHab_crear.getText().trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El precio debe ser un número válido.");
+            txtPrecioHab_crear.requestFocus();
+            return;
+        }
+
+        Reserva reserva = new Reserva(
+                dni, nombre, apePater, apeMater, correo, telefono, numHabitacion, tipoHabitacion, precio
+        );
+
+        if (reserva.registrar()) {
+            limpiarCamposCrear();
+        }
+    }//GEN-LAST:event_btnRegistrar_crearActionPerformed
+
+    private void btnBuscar_update1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar_update1ActionPerformed
+        Reserva.listarReservas(tablaHuesped);
+    }//GEN-LAST:event_btnBuscar_update1ActionPerformed
+
+    private void btnBuscar_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar_updateActionPerformed
+        String dni = txtDNI_update.getText().trim();
+
+        if (dni.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese un DNI antes de buscar.");
+            return;
+        }
+
+        Reserva r = Reserva.buscarPorDNI(dni);
+
+        if (r == null) {
+            JOptionPane.showMessageDialog(this, "No se encontró una reserva con ese DNI.");
+            txtDNI_update.requestFocus();
+            bloquearCamposUpdate();
+        } else {
+            txtNombre_update.setText(r.nombre);
+            txtApePater_update.setText(r.apellidoPaterno);
+            txtApeMat_update.setText(r.apellidoMaterno);
+            txtCorreo_update.setText(r.correo);
+            txtNumTel_update.setText(r.telefono);
+            txtNroHab_update.setText(String.valueOf(r.numHabitacion));
+            cbTipoHab_update.setSelectedItem(r.tipoHabitacion);
+            txtPrecioHab_update.setText(String.valueOf(r.precio));
+
+            habilitarCamposUpdate();
+        }
+    }//GEN-LAST:event_btnBuscar_updateActionPerformed
+
+    private void btnActualizar_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizar_updateActionPerformed
+        String dni = txtDNI_update.getText().trim();
+
+        if (dni.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No se ha buscado un DNI válido.");
+            return;
+        }
+
+        try {
+            Reserva r = new Reserva(
+                    dni,
+                    txtNombre_update.getText().trim(),
+                    txtApePater_update.getText().trim(),
+                    txtApeMat_update.getText().trim(),
+                    txtCorreo_update.getText().trim(),
+                    txtNumTel_update.getText().trim(),
+                    Integer.parseInt(txtNroHab_update.getText().trim()),
+                    cbTipoHab_update.getSelectedItem().toString(),
+                    Double.parseDouble(txtPrecioHab_update.getText().trim())
+            );
+
+            if (Reserva.actualizarReserva(r)) {
+                JOptionPane.showMessageDialog(this, "Reserva actualizada correctamente.");
+                bloquearCamposUpdate();
+                limpiarCamposUpdate();
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo actualizar la reserva.");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnActualizar_updateActionPerformed
+
+    private void btnRegistrar_crear1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrar_crear1ActionPerformed
+        String dni = txtDNI_delete.getText().trim();
+
+        if (dni.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un DNI.");
+            return;
+        }
+
+        Reserva r = Reserva.buscarPorDNI(dni);
+
+        if (r == null) {
+            JOptionPane.showMessageDialog(this, "No existe una reserva con ese DNI.");
+            return;
+        }
+
+        int confirm = JOptionPane.showConfirmDialog(this,
+                "¿Estás seguro de que deseas eliminar esta reserva?",
+                "Confirmar eliminación",
+                JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirm == JOptionPane.YES_OPTION) {
+            boolean eliminado = Reserva.eliminarPorDNI(dni);
+
+            if (eliminado) {
+                JOptionPane.showMessageDialog(this, "Reserva eliminada correctamente.");
+                txtDNI_delete.setText("");
+                // Opcional: refrescar la tabla
+                Reserva.listarReservas(tablaHuesped);
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo eliminar la reserva.");
+            }
+        }
+    }//GEN-LAST:event_btnRegistrar_crear1ActionPerformed
+
+    private void cbTipoHab_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoHab_crearActionPerformed
+        double precio = 0.0;
+        switch (cbTipoHab_crear.getSelectedItem().toString()) {
+            case "HABITACION INDIVIDUAL":
+                precio = 85.90;
+                break;
+            case "HABITACION DOBLE":
+                precio = 105.90;
+                break;
+            case "HABITACION TRIPLE":
+                precio = 125.90;
+                break;
+            case "HABITACION CUADRUPLE":
+                precio = 145.90;
+                break;
+            case "HABITACION SUITE":
+                precio = 200.90;
+                break;
+            case "HABITACION PRESIDENCIAL":
+                precio = 1250.90;
+                break;
+        }txtPrecioHab_crear.setText(String.format("S/ %.2f", precio));
+         txtPrecioHab_crear.setEnabled(false);
+
+    }//GEN-LAST:event_cbTipoHab_crearActionPerformed
+    
+    private void limpiarCamposUpdate() {
+        txtDNI_update.setText("");
+        txtNombre_update.setText("");
+        txtApePater_update.setText("");
+        txtApeMat_update.setText("");
+        txtCorreo_update.setText("");
+        txtNumTel_update.setText("");
+        txtNroHab_update.setText("");
+        txtPrecioHab_update.setText("");
+        cbTipoHab_update.setSelectedIndex(0);
+    }
+
+    private void habilitarCamposUpdate() {
+        txtNombre_update.setEnabled(true);
+        txtApePater_update.setEnabled(true);
+        txtApeMat_update.setEnabled(true);
+        txtCorreo_update.setEnabled(true);
+        txtNumTel_update.setEnabled(true);
+        txtNroHab_update.setEnabled(true);
+        cbTipoHab_update.setEnabled(true);
+        txtPrecioHab_update.setEnabled(true);
+        btnActualizar_update.setEnabled(true);
+    }
+
+    // Método auxiliar para limpiar campos después de registrar
+    private void limpiarCamposCrear() {
+        txtDNI_crear.setText("");
+        txtNombre_crear.setText("");
+        txtApePater_crear.setText("");
+        txtApeMat_crear.setText("");
+        txtCorreo_crear.setText("");
+        txtNumTel_crear.setText("");
+        txtNroHab_crear.setText("");
+        txtPrecioHab_crear.setText("");
+        cbTipoHab_crear.setSelectedIndex(0);
+        txtDNI_crear.requestFocus();
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -637,11 +955,13 @@ public class PrincipalCRUD extends javax.swing.JFrame {
     private javax.swing.JButton btnActualizar_update;
     private javax.swing.JButton btnBuscar_update;
     private javax.swing.JButton btnBuscar_update1;
+    private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnRegistrar_crear;
     private javax.swing.JButton btnRegistrar_crear1;
     private javax.swing.JComboBox<String> cbTipoHab_crear;
-    private javax.swing.JComboBox<String> cbTipoHab_crear1;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> cbTipoHab_update;
+    private com.toedter.calendar.JDateChooser dcEntrada;
+    private com.toedter.calendar.JDateChooser dcSalida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -660,6 +980,10 @@ public class PrincipalCRUD extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -677,22 +1001,24 @@ public class PrincipalCRUD extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lblUsuario;
+    private javax.swing.JLabel lblUsuarioName;
+    private javax.swing.JTable tablaHuesped;
     private javax.swing.JTextField txtApeMat_crear;
-    private javax.swing.JTextField txtApeMat_crear1;
+    private javax.swing.JTextField txtApeMat_update;
     private javax.swing.JTextField txtApePater_crear;
-    private javax.swing.JTextField txtApePater_crear1;
+    private javax.swing.JTextField txtApePater_update;
     private javax.swing.JTextField txtCorreo_crear;
-    private javax.swing.JTextField txtCorreo_crear1;
+    private javax.swing.JTextField txtCorreo_update;
     private javax.swing.JTextField txtDNI_crear;
+    private javax.swing.JTextField txtDNI_delete;
     private javax.swing.JTextField txtDNI_update;
-    private javax.swing.JTextField txtDNI_update1;
     private javax.swing.JTextField txtNombre_crear;
-    private javax.swing.JTextField txtNombre_crear1;
+    private javax.swing.JTextField txtNombre_update;
     private javax.swing.JTextField txtNroHab_crear;
-    private javax.swing.JTextField txtNroHab_crear1;
+    private javax.swing.JTextField txtNroHab_update;
     private javax.swing.JTextField txtNumTel_crear;
-    private javax.swing.JTextField txtNumTel_crear1;
+    private javax.swing.JTextField txtNumTel_update;
+    private javax.swing.JTextField txtPrecioHab_crear;
+    private javax.swing.JTextField txtPrecioHab_update;
     // End of variables declaration//GEN-END:variables
 }
