@@ -1,5 +1,7 @@
 package Clases;
 
+import java.util.Date;
+
 /**
  *
  * @author hegam
@@ -8,10 +10,15 @@ public class Habitacion {
     protected int numero;
     protected String tipo;
     double precio;
+    Date entrada;
+    Date salida;
 
-    public Habitacion(int numero, String tipo) {
+    public Habitacion(int numero, String tipo, double precio, Date entrada, Date salida) {
         this.numero = numero;
         this.tipo = tipo;
+        this.precio = precio;
+        this.entrada = entrada;
+        this.salida = salida;
     }
 
     public void mostrarInfo() {

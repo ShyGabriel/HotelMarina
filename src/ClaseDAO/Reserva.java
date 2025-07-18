@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Date;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,10 +30,10 @@ public class Reserva {
     public int numHabitacion;
     public String tipoHabitacion;
     public double precio;
+    public Date entrada;
+    public Date salida;
 
-    
-    public Reserva(String dni, String nombre, String apellidoPaterno, String apellidoMaterno,
-            String correo, String telefono, int numHabitacion, String tipoHabitacion, double precio) {
+    public Reserva(String dni, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String telefono, int numHabitacion, String tipoHabitacion, double precio, Date entrada, Date salida) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -42,7 +43,12 @@ public class Reserva {
         this.numHabitacion = numHabitacion;
         this.tipoHabitacion = tipoHabitacion;
         this.precio = precio;
+        this.entrada = entrada;
+        this.salida = salida;
     }
+
+    
+    
 
     public boolean validarCampos() {
         if (dni.isEmpty() || nombre.isEmpty() || apellidoPaterno.isEmpty()
@@ -71,7 +77,7 @@ public class Reserva {
         }
 
         Connection con = ConexionBBDD.getConnection();
-        String sql = "INSERT INTO reserva (dni, nombre, apellido_paterno, apellido_materno, correo, telefono, num_habitacion, tipo_habitacion, precio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO reserva (dni, nombre, apellido_paterno, apellido_materno, correo, telefono, num_habitacion, tipo_habitacion, precio, fecha_entrada, fecha_salida) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -84,6 +90,8 @@ public class Reserva {
             ps.setInt(7, numHabitacion);
             ps.setString(8, tipoHabitacion);
             ps.setDouble(9, precio);
+            ps.setDate(10, new java.sql.Date(entrada.getTime()));
+            ps.setDate(11, new java.sql.Date(salida.getTime()));
 
             ps.executeUpdate();
             con.close();
@@ -112,15 +120,17 @@ public class Reserva {
         modelo.addColumn("Nro Habitación");
         modelo.addColumn("Tipo Hab");
         modelo.addColumn("Precio");
+        modelo.addColumn("Fecha Entrada");
+        modelo.addColumn("Fecha Salida");
 
-        String sql = "SELECT id, dni, nombre, apellido_paterno, apellido_materno, correo, telefono, num_habitacion, tipo_habitacion, precio FROM reserva";
+        String sql = "SELECT id, dni, nombre, apellido_paterno, apellido_materno, correo, telefono, num_habitacion, tipo_habitacion, precio, fecha_entrada, fecha_salida FROM reserva";
 
         try {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
             while (rs.next()) {
-                Object[] fila = new Object[10];
+                Object[] fila = new Object[12];
                 fila[0] = rs.getInt("id");
                 fila[1] = rs.getString("dni");
                 fila[2] = rs.getString("nombre");
@@ -131,6 +141,8 @@ public class Reserva {
                 fila[7] = rs.getInt("num_habitacion");
                 fila[8] = rs.getString("tipo_habitacion");
                 fila[9] = rs.getDouble("precio");
+                fila[10] = rs.getDate("fecha_entrada");
+                fila[11] = rs.getDate("fecha_salida");
 
                 modelo.addRow(fila);
             }
@@ -164,7 +176,9 @@ public class Reserva {
                         rs.getString("telefono"),
                         rs.getInt("num_habitacion"),
                         rs.getString("tipo_habitacion"),
-                        rs.getDouble("precio")
+                        rs.getDouble("precio"),
+                        rs.getDate("fecha_entrada"),
+                        rs.getDate("fecha_salida")
                 );
             }
 
@@ -179,7 +193,7 @@ public class Reserva {
 
     public static boolean actualizarReserva(Reserva r) {
         Connection con = ConexionBBDD.getConnection();
-        String sql = "UPDATE reserva SET nombre=?, apellido_paterno=?, apellido_materno=?, correo=?, telefono=?, num_habitacion=?, tipo_habitacion=?, precio=? WHERE dni=?";
+        String sql = "UPDATE reserva SET nombre=?, apellido_paterno=?, apellido_materno=?, correo=?, telefono=?, num_habitacion=?, tipo_habitacion=?, precio=?, fecha_entrada=?, fecha_salida=? WHERE dni=?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -191,7 +205,9 @@ public class Reserva {
             ps.setInt(6, r.numHabitacion);
             ps.setString(7, r.tipoHabitacion);
             ps.setDouble(8, r.precio);
-            ps.setString(9, r.dni);
+            ps.setDate(9, new java.sql.Date(r.entrada.getTime()));
+            ps.setDate(10, new java.sql.Date(r.salida.getTime()));
+            ps.setString(11, r.dni);
 
             int rows = ps.executeUpdate();
             con.close();

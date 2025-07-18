@@ -8,6 +8,7 @@ import java.util.Scanner;
  */
 public class HotelApp {
     public static void main(String[] args) {
+        /*
         Scanner sc = new Scanner(System.in);
 
         // Ingresar datos del cliente
@@ -39,5 +40,6 @@ public class HotelApp {
         reserva.reservar();
 
         sc.close();
-    }
+*/
+    }  
 }
